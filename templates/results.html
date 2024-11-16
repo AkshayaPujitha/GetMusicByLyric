@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .results {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .column {
+            flex: 1;
+            min-width: 250px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f9fbfd;
+            padding: 15px;
+        }
+        .column h2 {
+            text-align: center;
+            background-color: #4a90e2;
+            color: #ffffff;
+            margin: -15px -15px 10px;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+        .column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .column li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .column li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .column li a {
+            text-decoration: none;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+        .column li a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f4f4f9;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Search Results for "{{ query }}"</h1>
+        </div>
+
+        <!-- Results Section -->
+        {% if results %}
+        <div class="results">
+            <!-- Track Names Column -->
+            <div class="column">
+                <h2>Track Names</h2>
+                <ul>
+                    {% for result in results %}
+                    <li>
+                        <a href="{{ url_for('show_lyrics', music_id=result['id']) }}">
+                            {{ result['music_name'] }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Artist Names Column -->
+            <div class="column">
+                <h2>Artist Names</h2>
+                <ul>
+                    {% for result in results %}
+                    <li>{{ result['artist'] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <p style="text-align: center; padding: 20px;">No results found.</p>
+        {% endif %}
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <a href="/">Back to Search</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ music_name }} by {{ artist }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #6200ea;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header h2 {
+            margin: 5px 0 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .lyrics {
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+            line-height: 1.6;
+            font-size: 16px;
+            white-space: pre-wrap; /* Preserve line breaks */
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .footer a {
+            color: #6200ea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>{{ music_name }}</h1>
+            <h2>by {{ artist }}</h2>
+        </div>
+
+        <!-- Lyrics Section -->
+        <div class="lyrics">
+            {{ lyrics }}
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <a href="/">Back to Search</a>
+        </div>
+    </div>
+</body>
+</html>
